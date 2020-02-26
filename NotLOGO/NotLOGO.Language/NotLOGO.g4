@@ -3,20 +3,41 @@
 /* LEXICAL RULES */
 
 /* keywords */
-PENUP_KW	:	'penup';
-FD_KW		:	'fd';
-LT_KW		:	'lt';
-RT_KW		:	'rt';
-BD_KW		:	'bd';
-PENDOWN_KW	:	'pendown';
-PENCOLOR_KW	:	'pencolor';
+KW_PENUP	:	'penup';
+KW_PENDOWN	:	'pendown';
+KW_FD		:	'fd';
+KW_LT		:	'lt';
+KW_RT		:	'rt';
+KW_BD		:	'bd';
+KW_PENCOLOR	:	'pencolor';
 
 /* values */
-INT_VAL			:	[0-9]+;
-HEXCOLOR_VAL	:	'#'[0-9a-fA-F]+;
+VAL_INT			:	'-'?[0-9]+;
+VAL_HEXCOLOR	:	'#'[0-9a-fA-F]+;
 
 /* misc */
-WS  :   [ \r\t\u000C\n]+ -> skip;
+NEWLINE	:	'\r'? '\n' ;	
+WS		:   [ \t]+ -> skip;
 COMMENT	:	'/*'(.)*'*/' -> skip;
 
 /* SYNTAX RULES */
+cmd_penup	:	KW_PENUP NEWLINE
+			;
+
+cmd_pendown	:	KW_PENDOWN NEWLINE
+			;
+
+cmd_fd		:	KW_FD VAL_INT NEWLINE
+			;
+
+cmd_bd		:	KW_BD VAL_INT NEWLINE
+			;
+
+cmd_lt		:	KW_LT VAL_INT NEWLINE
+			;
+
+cmd_rt		:	KW_RT VAL_INT NEWLINE
+			;
+
+cmd_pencolor	:	KW_PENCOLOR VAL_HEXCOLOR NEWLINE
+				;
