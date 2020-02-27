@@ -20,9 +20,28 @@ namespace NotLOGO.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private CanvasCursor _cursor;
         public MainWindow()
         {
             InitializeComponent();
+            _cursor = new CanvasCursor(cursorRectangle);
+        }
+
+
+        private void btn_executeCommand_Click(object sender, RoutedEventArgs e)
+        {
+            _cursor.CenterOnCanvas();
+            
+            
+            _cursor.MoveForward(40);
+            _cursor.RotateRight(45);
+            _cursor.MoveForward(30);
+            //_cursor.RotateLeft(90);
+            //_cursor.MoveForward(50);
+
+            //_cursor.RotateRight(45);
+            //_cursor.MoveBackward(20);
+
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotLOGO.GUI"
         mc:Ignorable="d"
-        Title="Not LOGO" Height="450" Width="800">
+        Title="Not LOGO" Height="600" Width="800" MinWidth="800" MinHeight="600" MaxWidth="800" MaxHeight="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -15,14 +15,28 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Canvas Grid.Row="1" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        <Canvas x:Name="cnv_main" Grid.Row="1" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <Rectangle Width="20" Height="20" x:Name="cursorRectangle">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Images/cursor.png"/>
+                </Rectangle.Fill>
+                <Rectangle.RenderTransform>
+                    <RotateTransform></RotateTransform>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+        </Canvas>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="15*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
-            <TextBox HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
-            <TextBox HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" IsReadOnly="True"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="tbx_command" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+            <TextBox x:Name="tbx_commands" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.ColumnSpan="2" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" IsReadOnly="True" AcceptsReturn="True" />
+            <Button x:Name="btn_executeCommand" Content="🡆" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Stretch" Click="btn_executeCommand_Click"/>
         </Grid>
         <Menu Grid.ColumnSpan="2" VerticalContentAlignment="Stretch">
             <MenuItem Header="File" VerticalAlignment="Stretch" Height="Auto" HorizontalAlignment="Left">
